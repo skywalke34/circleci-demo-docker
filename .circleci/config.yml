@@ -87,8 +87,8 @@ workflows:
           requires:
             - build
           context: myContext
-          registry_url: https://registry.hub.docker.com/repository/docker/skywalke34/
-          repository: cci-demo-docker
+          registry_url: https://registry.hub.docker.com/repository/docker/
+          repository: skywalke/cci-demo-docker
           registry_username: skywalke34
           registry_password: 07OqUvs8W@xXA
           tag: latest
