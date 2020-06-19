@@ -89,8 +89,8 @@ jobs:
       - kube-orb/install-kubectl
       - kube-orb/create-or-update-resource:
           get-rollout-status: true
-          resource-file-path: /
-          resource-name: deployment.yaml
+          resource-file-path: ./deployment.yaml
+          resource-name: demo
           show-kubectl-command: true     
 workflows:
   build-and-scan-image:
