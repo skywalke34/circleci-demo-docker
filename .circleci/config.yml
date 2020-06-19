@@ -67,6 +67,7 @@ jobs:
             docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
             docker push skywalke34/cci-demo-docker
             docker tag skywalke34/cci-demo-docker skywalke34/cci-demo-docker:$TAG
+            docker push skywalke34/cci-demo-docker:$TAG
 
       - store_artifacts:
           path: /tmp/test-results
@@ -86,10 +87,10 @@ workflows:
           requires:
             - build
           context: myContext
-          registry_url: $registry_url
-          repository: $repository
-          registry_username: $registry_username
-          registry_password: $registry_password
+          registry_url: https://registry.hub.docker.com/repository/docker/skywalke34/
+          repository: cci-demo-docker
+          registry_username: skywalke34
+          registry_password: 07OqUvs8W@xXA
           tag: latest
           scan_layers: true
           high_vul_to_fail: 20
