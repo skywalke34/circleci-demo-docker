@@ -2,6 +2,7 @@ version: 2.1
 orbs:
   neuvector: neuvector/neuvector-orb@1.0.0
   aws-eks: circleci/aws-eks@0.2.7
+  kubernetes: circleci/kubernetes@0.11.0
 jobs:
   build:
     docker:
@@ -80,7 +81,17 @@ jobs:
 
       - store_test_results:
           path: /tmp/test-results
-
+  deploy-update:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      -checkout
+      - kube-orb/install-kubectl
+      - kube-orb/create-or-update-resource:
+          get-rollout-status: true
+          resource-file-path: /
+          resource-name: deployment.yaml
+          show-kubectl-command: true     
 workflows:
   build-and-scan-image:
     jobs:
@@ -102,3 +113,11 @@ workflows:
           filters:
             branches:
               only: master
+      - deploy_update:
+          requires:
+            - neuvector/scan-image
+          context: myContext
+          filters:
+            branches:
+              only: master
+              
