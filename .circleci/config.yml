@@ -113,7 +113,7 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy_update:
+      - deploy-update:
           requires:
             - neuvector/scan-image
           context: myContext
