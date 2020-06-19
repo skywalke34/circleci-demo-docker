@@ -87,8 +87,8 @@ workflows:
           context: myContext
           registry_url: 'https://registry.hub.docker.com/'
           repository: cci-demo-docker
-          registry_username: $registry_username
-          registry_password: $registry_password
+          registry_username: $DOCKER_LOGIN
+          registry_password: $DOCKER_PASSWORD
           tag: $TAG
           scan_layers: true
           high_vul_to_fail: 0
