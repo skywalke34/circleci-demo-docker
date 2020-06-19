@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   neuvector: neuvector/neuvector-orb@1.0.0
   aws-eks: circleci/aws-eks@0.2.7
-  kubernetes: circleci/kubernetes@0.11.0
+  kube-orb: circleci/kubernetes@0.11.0
 jobs:
   build:
     docker:
