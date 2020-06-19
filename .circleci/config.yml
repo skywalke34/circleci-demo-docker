@@ -93,8 +93,6 @@ workflows:
           requires:
             - build
           context: myContext
-          registry_url: https://registry.hub.docker.com/
-          repository: skywalke/cci-demo-docker
           tag: latest
           scan_layers: true
           high_vul_to_fail: 20
