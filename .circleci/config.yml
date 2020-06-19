@@ -85,7 +85,7 @@ jobs:
     docker:
       - image: 'cimg/base:stable'
     steps:
-      -checkout
+      - checkout
       - kube-orb/install-kubectl
       - kube-orb/create-or-update-resource:
           get-rollout-status: true
