@@ -1,4 +1,7 @@
-version: 2
+version: 2.1
+orbs:
+  neuvector: neuvector/neuvector-orb@1.0.0
+  aws-eks: circleci/aws-eks@0.2.7
 jobs:
   build:
     docker:
@@ -15,7 +18,6 @@ jobs:
 
     steps:
       - checkout
-
       - run:
           name: Waiting for Postgres to be ready
           command: |
@@ -71,3 +73,24 @@ jobs:
 
       - store_test_results:
           path: /tmp/test-results
+
+workflows:
+  build-and-scan-image:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master
+      - neuvector/scan-image:
+          requires:
+            - build
+          context: myContext
+          registry_url: 'https://hub.docker.com/repository/docker/skywalke34/'
+          repository: cci-demo-docker
+          tag: 'latest'
+          scan_layers: true
+          high_vul_to_fail: 0
+          medium_vul_to_fail: 3
+          filters:
+            branches:
+              only: master
