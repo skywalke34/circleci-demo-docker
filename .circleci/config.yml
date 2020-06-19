@@ -68,7 +68,12 @@ jobs:
             docker push skywalke34/cci-demo-docker
             docker tag skywalke34/cci-demo-docker skywalke34/cci-demo-docker:$TAG
             docker push skywalke34/cci-demo-docker:$TAG
-
+      - run:
+          name: What the hell are my variables???
+          command: |
+            echo DOCKER_LOGIN = $DOCKER_LOGIN
+            echo repository = $repository
+            echo registry_username = $registry_username
       - store_artifacts:
           path: /tmp/test-results
           destination: raw-test-output
@@ -80,6 +85,7 @@ workflows:
   build-and-scan-image:
     jobs:
       - build:
+          context: myContext
           filters:
             branches:
               only: master
@@ -87,10 +93,8 @@ workflows:
           requires:
             - build
           context: myContext
-          registry_url: https://registry.hub.docker.com/repository/docker/
+          registry_url: https://registry.hub.docker.com/
           repository: skywalke/cci-demo-docker
-          registry_username: skywalke34
-          registry_password: 07OqUvs8W@xXA
           tag: latest
           scan_layers: true
           high_vul_to_fail: 20
