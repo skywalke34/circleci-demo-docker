@@ -97,8 +97,8 @@ workflows:
           repository: skywalke34/cci-demo-docker
           tag: 'latest'
           scan_layers: true
-          high_vul_to_fail: 20
-          medium_vul_to_fail: 30
+          high_vul_to_fail: 3
+          medium_vul_to_fail: 10
           filters:
             branches:
               only: master
