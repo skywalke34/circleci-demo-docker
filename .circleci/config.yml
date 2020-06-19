@@ -65,7 +65,8 @@ jobs:
             TAG="0.1.${CIRCLE_BUILD_NUM}"
             docker build -t skywalke34/cci-demo-docker:$TAG .
             docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-            docker push skywalke34/cci-demo-docker:$TAG
+            docker push skywalke34/cci-demo-docker
+            docker tag skywalke34/cci-demo-docker:$TAG
 
       - store_artifacts:
           path: /tmp/test-results
@@ -85,14 +86,14 @@ workflows:
           requires:
             - build
           context: myContext
-          registry_url: 'https://registry.hub.docker.com/'
-          repository: skywalke34/cci-demo-docker
-          registry_username: $DOCKER_LOGIN
-          registry_password: $DOCKER_PASSWORD
-          tag: $TAG
+          registry_url: $registry_url
+          repository: $repository
+          registry_username: $registry_username
+          registry_password: $registry_password
+          tag: latest
           scan_layers: true
-          high_vul_to_fail: 0
-          medium_vul_to_fail: 3
+          high_vul_to_fail: 20
+          medium_vul_to_fail: 30
           filters:
             branches:
               only: master
