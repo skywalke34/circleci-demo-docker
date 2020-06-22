@@ -86,6 +86,10 @@ jobs:
       - image: 'cimg/base:stable'
     steps:
       - checkout
+      - run:
+          command: |
+            sudo apt-get update
+            sudo apt-get install python
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: nv_SE_Demo
           install-kubectl: true
