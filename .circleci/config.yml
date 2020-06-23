@@ -81,24 +81,7 @@ jobs:
 
       - store_test_results:
           path: /tmp/test-results
-  deploy-update:
-    docker:
-      - image: 'cimg/base:stable'
-    steps:
-      - checkout
-      - run:
-          command: |
-            sudo apt-get update
-            sudo apt-get install python
-      - aws-eks/update-kubeconfig-with-authenticator:
-          cluster-name: nv_SE_Demo
-          aws-region: us-east-1
-          cluster-authentication-role-arn: arn:aws:iam::596840562787:role/eks_SE_ClusterRole
-          install-kubectl: true
-      - run:
-          command: |
-            kubectl get services
-          name: Check K8's cluster services
+
 workflows:
   build-and-scan-image:
     jobs:
@@ -115,7 +98,7 @@ workflows:
           repository: skywalke34/cci-demo-docker
           tag: 'latest'
           scan_layers: true
-          high_vul_to_fail: 2
+          high_vul_to_fail: 1
           medium_vul_to_fail: 5
           filters:
             branches:
