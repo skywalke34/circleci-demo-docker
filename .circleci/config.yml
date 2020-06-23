@@ -70,7 +70,7 @@ jobs:
             docker tag skywalke34/cci-demo-docker skywalke34/cci-demo-docker:$TAG
             docker push skywalke34/cci-demo-docker:$TAG
       - run:
-          name: What the hell are my variables???
+          name: What are my variables???
           command: |
             echo DOCKER_LOGIN = $DOCKER_LOGIN
             echo repository = $repository
