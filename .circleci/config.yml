@@ -103,11 +103,3 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy-update:
-          requires:
-            - build
-            - neuvector/scan-image
-          context: myContext
-          filters:
-            branches:
-              only: master
