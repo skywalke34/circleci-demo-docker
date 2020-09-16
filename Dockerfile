@@ -2,11 +2,8 @@ FROM alpine:3.5
 
 ADD ./workdir/contacts /usr/bin/contacts
 ADD ./db/migrations /migrations
-RUN apt-get update
-RUN apt-get install -y \
-        git \
-        openssh-server \
-        libmysqlclient-dev
+RUN apk update
+RUN apk add openssh
         
 RUN mkdir -p /root/.ssh && \
     chmod 0700 /root/.ssh && \
