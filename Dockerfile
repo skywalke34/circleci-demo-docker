@@ -12,3 +12,4 @@ RUN mkdir -p /root/.ssh && \
     ssh-keygen -f /root/.ssh/id_rsa
 
 ENTRYPOINT contacts
+
