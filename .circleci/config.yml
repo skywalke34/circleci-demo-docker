@@ -92,8 +92,6 @@ workflows:
               only: master
       # NeuVector Orb
       - neuvector/scan-image:
-          requires:
-            - build
           context: myContext
           registry_url: 'https://registry.hub.docker.com/'
           repository: skywalke34/cci-demo-docker
