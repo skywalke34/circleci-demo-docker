@@ -99,6 +99,3 @@ workflows:
           scan_layers: true
           high_vul_to_fail: 5
           medium_vul_to_fail: 5
-          filters:
-            branches:
-              only: master
