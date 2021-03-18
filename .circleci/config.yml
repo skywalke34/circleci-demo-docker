@@ -83,16 +83,15 @@ jobs:
           path: /tmp/test-results
 
 workflows:
-  build-image:
+  build-and-scan-image:
     jobs:
       - build:
           context: myContext
           filters:
             branches:
               only: master
-  scan-local-image:
+  scan-image:
     jobs:
-      # NeuVector Orb
       - neuvector/scan-image:
           context: myContext
           registry_url: 'https://registry.hub.docker.com/'
