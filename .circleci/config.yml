@@ -98,8 +98,8 @@ workflows:
           repository: skywalke34/cci-demo-docker
           tag: 'latest'
           scan_layers: true
-          high_vul_to_fail: 10
-          medium_vul_to_fail: 10
+          high_vul_to_fail: 1
+          medium_vul_to_fail: 0
           image_tar_file: /tmp/neuvector/alpine-3.2.tar
           path: /tmp/neuvector/
           image_name: cci-demo-docker
