@@ -83,13 +83,15 @@ jobs:
           path: /tmp/test-results
 
 workflows:
-  build-and-scan-image:
+  build-image:
     jobs:
       - build:
           context: myContext
           filters:
             branches:
               only: master
+  scan-local-image:
+    jobs:
       # NeuVector Orb
       - neuvector/scan-image:
           context: myContext
