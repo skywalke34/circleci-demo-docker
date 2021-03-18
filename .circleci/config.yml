@@ -100,7 +100,7 @@ workflows:
           scan_layers: true
           high_vul_to_fail: 5
           medium_vul_to_fail: 5
-          image_tar_file:/tmp/neuvector/alpine-3.2.tar
+          image_tar_file: /tmp/neuvector/alpine-3.2.tar
           path: /tmp/neuvector/
           image_name: cci-demo-docker
           image_tag: 'latest'
