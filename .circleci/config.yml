@@ -7,9 +7,10 @@ jobs:
   build:
     docker:
       # using custom image, see .circleci/images/primary/Dockerfile
-      - image: alpine:3.12.0
       - image: circleci/cci-demo-docker-primary:0.0.2
       - image: postgres:9.4.1
+      - image: openjdk:7
+      - image: bash:4.4
         environment:
           POSTGRES_USER: ubuntu
           POSTGRES_DB: contacts
@@ -84,7 +85,7 @@ jobs:
           path: /tmp/test-results
 
 workflows:
-  build-and-scan-image:
+  build-that-image:
     jobs:
       - build:
           context: myContext
